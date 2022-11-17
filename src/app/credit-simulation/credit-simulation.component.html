@@ -1,0 +1,177 @@
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-md-4">
+          <div class="card shadow" style="width: 20rem; height: 30rem;">
+              <div class="inner">
+                  <img class="card-img-top" src="../assets/Photos/credit immobilier.jpg" alt="Card image cap" >
+              </div>
+              <div class="card-body text-center">
+              <h5 class="card-title">Credit professionel</h5>
+              <p class="card-text">Que ce soit pour l’acquisition de votre résidence principale ou secondaire, ou pour la construction de votre maison. Calculez le montant de vos mensualités selon le montant à emprunter et la durée du prêt pour financer votre logement </p>
+              <a href="#" class="btn btn-primary" (click)="isProfessional()">Simuler</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card shadow" style="width: 20rem;  height: 30rem;">
+              <div class="inner">
+                  <img class="card-img-top" src="../assets/Photos/credit auto.jpg" alt="Card image cap">
+              </div>
+              <div class="card-body text-center">
+              <h5 class="card-title">Credit immobilier</h5>
+              <p class="card-text">Que ce soit pour l’acquisition de votre résidence principale ou secondaire, ou pour la construction de votre maison. Calculez le montant de vos mensualités selon le montant à emprunter et la durée du prêt pour financer votre logement </p>
+              <a href="#" class="btn btn-primary" (click)="isImmobilier()">Simuler</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="card shadow" style="width: 20rem;  height: 30rem;">
+              <div class="inner">
+                  <img class="card-img-top" src="../assets/Photos/credit a la consommation.jpg" alt="Card image cap">
+              </div>
+              <div class="card-body text-center">
+              <h5 class="card-title">Credit A la consommation</h5>
+              <p class="card-text">Que ce soit pour l’acquisition de votre résidence principale ou secondaire, ou pour la construction de votre maison. Calculez le montant de vos mensualités selon le montant à emprunter et la durée du prêt pour financer votre logement </p>
+              <a href="#" class="btn btn-primary" (click)="isConsommation()">Simuler</a>
+              </div>
+          </div>
+      </div>
+  </div> 
+  
+    <mat-card class="parentCard" *ngIf="simulatorClicked==0">
+      <mat-card-title style="text-align:center; margin-bottom: 20px; align-items: center;">Simulateur de credit professionel</mat-card-title>
+
+      <mat-card-content>
+        <mat-card class="childCard">
+      <mat-card-content >
+      <div class="modal-body">
+          <form #addForm="ngForm">
+           
+              <label for="creditAmount">Credit Amount</label>
+              <mat-slider #creditAmountValue ngModel name="creditAmount"  id="creditAmount"
+  thumbLabel
+  [displayWith]="euroLabel"
+  tickInterval="500"
+  step="100"
+  min="0"
+  max="350000"
+  aria-label="units" (change)="updateCreditAmount($event)" [value]="creditAmountValue.value"></mat-slider>
+  <br/>
+              <label for="interest">Interest</label>
+              <mat-slider #interestValue ngModel name="interest" id="interest"
+              thumbLabel
+              [displayWith]="percentLabel"
+              tickInterval="1000"
+              step="0.25"
+              min="0"
+              max="100"
+              aria-label="units" (change)="updateInterest($event)" [value]="interestValue.value"></mat-slider>
+          <br/>
+              <label for="months">Months</label>
+              <mat-slider #monthsValue ngModel name="months"  id="months"
+              thumbLabel
+              
+              tickInterval="1000"
+              step="1"
+              min="3"
+              max="72"
+              aria-label="units" (change)="updateMonths($event)" [value]="monthsValue.value" ></mat-slider>
+            </form></div>
+          </mat-card-content>
+          <mat-card-footer>
+            <mat-card-actions>
+        <button mat-button type="submit" >Generer le tableau d amortissement</button>
+      </mat-card-actions>
+    </mat-card-footer>
+            </mat-card>
+             <div class="mensualityBox">
+              <mat-card-title>mensualité :</mat-card-title>
+              <mat-card-content>{{mensuality | currency : 'EUR' : true : '1.2-2'}}</mat-card-content>
+            </div> 
+            </mat-card-content> 
+    
+    </mat-card> 
+
+    <mat-card  *ngIf="simulatorClicked==1" style="background-color:pink ;">
+      <mat-card-title>Simulateur de credit immobilier</mat-card-title>
+      <div class="modal-body">
+          <form #addForm="ngForm">
+           
+              <label for="creditAmount">Credit Amount</label>
+              <mat-slider  ngModel name="creditAmount"  id="creditAmount"
+  thumbLabel
+  [displayWith]="euroLabel"
+  tickInterval="500"
+  step="100"
+  min="0"
+  max="350000"
+  aria-label="units"></mat-slider>
+  <br/>
+              <label for="interest">Interest</label>
+              <mat-slider ngModel name="interest" id="interest"
+              thumbLabel
+              [displayWith]="percentLabel"
+              tickInterval="5"
+              step="0.25"
+              min="0"
+              max="100"
+              aria-label="units"></mat-slider>
+          <br/>
+              <label for="months">Months</label>
+              <mat-slider ngModel name="months"  id="months"
+              thumbLabel
+              tickInterval="10"
+              step="1"
+              min="60"
+              max="324"
+              aria-label="units"></mat-slider>
+    
+      <mat-card-actions>
+        <button mat-button type="submit" >Generer le tableau d amortissement</button>
+      </mat-card-actions></form></div>
+    </mat-card> 
+      <mat-card  *ngIf="simulatorClicked==2" style="background-color:pink ;">
+        <mat-card-title>Simulateur de credit a la consommation</mat-card-title>
+        <div class="modal-body">
+            <form #addForm="ngForm">
+             
+                <label for="creditAmount">Credit Amount</label>
+                <mat-slider  ngModel name="creditAmount"  id="creditAmount"
+    thumbLabel
+    [displayWith]="euroLabel"
+    tickInterval="1000"
+    step="50"
+    min="300"
+    max="75000"
+    aria-label="units"></mat-slider>
+    <br/>
+                <label for="interest">Interest</label>
+                <mat-slider ngModel name="interest" id="interest"
+                thumbLabel
+                [displayWith]="percentLabel"
+                tickInterval="1000"
+                step="0.25"
+                min="0"
+                max="100"
+                aria-label="units"></mat-slider>
+            <br/>
+                <label for="months">Months</label>
+                <mat-slider ngModel name="months"  id="months"
+                thumbLabel
+                tickInterval="1000"
+                step="1"
+                min="3"
+                max="84"
+                aria-label="units"></mat-slider>
+      
+        <mat-card-actions>
+          <button mat-button type="submit" >Generer le tableau d amortissement</button>
+        </mat-card-actions>
+      </form>
+    </div>
+      </mat-card> 
+  </div>
+  
+  
+
+  

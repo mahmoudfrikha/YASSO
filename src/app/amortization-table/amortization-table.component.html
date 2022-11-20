@@ -1,0 +1,40 @@
+{{amortizationList}}
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="montantEmprunteRestant">
+      <th mat-header-cell *matHeaderCellDef> Montant Emprunte Restant Du </th>
+      <td mat-cell *matCellDef="let element"> {{element.montantEmprunteRestant}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="mensualite">
+      <th mat-header-cell *matHeaderCellDef> Mensualite </th>
+      <td mat-cell *matCellDef="let element"> {{element.mensualite} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="remboursement">
+      <th mat-header-cell *matHeaderCellDef> Remboursement </th>
+      <td mat-cell *matCellDef="let element"> {{element.remboursement} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="interet">
+      <th mat-header-cell *matHeaderCellDef> Interet </th>
+      <td mat-cell *matCellDef="let element"> {{element.interet}} </td>
+    </ng-container>
+    <ng-container matColumnDef="montantRestantDu">
+        <th mat-header-cell *matHeaderCellDef> Montant Restant Du </th>
+        <td mat-cell *matCellDef="let element"> {{element.montantRestantDu}} </td>
+      </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator #paginator [length]="5" [pageSizeOptions]="[3,5,10]" aria-label="select page" showFirstLastButtons></mat-paginator>
+  

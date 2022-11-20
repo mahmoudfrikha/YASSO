@@ -1,0 +1,102 @@
+<div class="container">
+    
+        <h1 style="padding-top: 15px; padding-left:20px;">Simulateur credit professionel</h1>
+        <div class="content">
+        <div class="creditInputs">
+            <span class="group">
+            <img class="icon" src="../assets/Photos/gross.png" alt="amount" >
+            <h3>Credit</h3>
+        </span>
+        <div class="slideGroup">
+                <mat-slider #creditAmountValue ngModel name="creditAmount"  id="creditAmount"
+  thumbLabel
+  [displayWith]="euroLabel"
+  tickInterval="500"
+  step="100"
+  min="0"
+  max="350000"
+  aria-label="units" (change)="updateCreditAmount($event)" [value]="creditAmountValue.value"></mat-slider>
+  <h1 class="numberBox">{{creditAmount | currency : 'EUR' : true : '1.2-2'}}</h1>
+</div>
+ <span class="group">
+  <img class="icon" src="../assets/Photos/booking.png" alt="months" >         
+  <h3>Duree</h3>
+</span>
+<div class="slideGroup">
+                <mat-slider #monthsValue ngModel name="months"  id="months"
+              thumbLabel
+              
+              tickInterval="1000"
+              step="1"
+              min="3"
+              max="72"
+              aria-label="units" (change)="updateMonths($event)" [value]="monthsValue.value" ></mat-slider>
+              <h1 class="numberBox">{{months}} Months</h1>
+
+            </div>
+             <span class="group">
+              <img  class="icon" src="../assets/Photos/interest.png" alt="interest" >
+              <h3>Interet</h3>
+            </span>
+            <div class="slideGroup">
+              <mat-slider #interestValue ngModel name="interest" id="interest"
+              thumbLabel
+              [displayWith]="percentLabel"
+              tickInterval="1000"
+              step="0.25"
+              min="0"
+              max="100"
+              aria-label="units" (change)="updateInterest($event)" [value]="interestValue.value"></mat-slider>
+              <h1 class="numberBox">{{interest | number:'1.2'}} %</h1>
+                </div>
+                <span class="group">
+                    <img class="icon" src="../assets/Photos/insurance.svg" alt="insurance" >         
+                    <h3>Assurance</h3>
+                  </span>
+            <div class="slideGroup">
+                <mat-slider #insuranceValue ngModel name="insurance" id="insurance"
+                thumbLabel
+                [displayWith]="percentLabel"
+                tickInterval="5"
+                step="0.01"
+                min="0"
+                max="10"
+                aria-label="units" (change)="updateInsurance($event)" [value]="insuranceValue.value"></mat-slider>
+                <h1 class="numberBox">{{insurance | number:'1.2'}} %</h1>
+                  </div>
+                  <span class="group">
+                    <img class="icon" src="../assets/Photos/caution.svg" alt="fraisCautionnement" >         
+                    <h3>Frais de cautionnement</h3>
+                  </span>
+                  <div class="slideGroup">
+                    <mat-slider #fraisCautionnementValue ngModel name="fraisCautionnement" id="fraisCautionnement"
+                    thumbLabel
+                    [displayWith]="euroLabel"
+                    tickInterval="50"
+                    step="10"
+                    min="0"
+                    max="3000"
+                    aria-label="units" (change)="updateFraisCautionnement($event)" [value]="fraisCautionnementValue.value"></mat-slider>
+                    <h1 class="numberBox">{{fraisCautionnement | currency : 'EUR' : true : '1.2-2'}} </h1>
+                      </div>
+                      <button type="submit" class="button"> Demander un credit</button>
+                      <button type="submit" class="button" (click)="TableIsClicked()"> Generer le tableau d'amortissement</button>
+                </div>
+
+            <div class="verticalLine"></div>
+                <div class="results">
+                    <h3>Mensualite</h3>
+                    <h1>{{mensuality | currency : 'EUR' : true : '1.2-2'}}</h1>
+                    <h3>Assurance par mois</h3>
+                    <h1>{{monthlyInsurance | currency : 'EUR' : true : '1.2-2'}}</h1>
+                    <h3>Le TAEG</h3>
+                    <h1>5000</h1>
+                    <h3>Cout totale du credit</h3>
+                    <h1>6000</h1>
+                  
+                </div>  
+              
+</div>
+<app-amortization-table *ngIf="tableIsClicked" [amortizationList]=" generateAmortizationTable()"
+></app-amortization-table>
+</div>

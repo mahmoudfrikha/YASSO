@@ -7,7 +7,7 @@ import { CreditSimulationComponent } from './credit-simulation/credit-simulation
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from "@angular/material/table";
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from "@angular/material/form-field";
 import {MatSortModule} from "@angular/material/sort";
@@ -17,10 +17,16 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSlider, MatSliderModule} from '@angular/material/slider';
+import { ProfessionalCreditSimulationCardComponent } from './professional-credit-simulation-card/professional-credit-simulation-card.component';
+import {MatStep, MatStepper, MatStepperModule} from '@angular/material/stepper';
+import { AmortizationTableComponent } from './amortization-table/amortization-table.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    CreditSimulationComponent
+    CreditSimulationComponent,
+    ProfessionalCreditSimulationCardComponent,
+    AmortizationTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,8 @@ import {MatSlider, MatSliderModule} from '@angular/material/slider';
     MatCardModule,
     MatButtonModule,
     MatSidenavModule,
-    MatSliderModule
+    MatSliderModule,
+    MatStepperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
